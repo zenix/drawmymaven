@@ -11,6 +11,10 @@ class MavenTreeParser():
     maven_command = 'mvn -o org.apache.maven.plugins:maven-dependency-plugin:2.6:tree -DoutputFile=tree.txt'
     maven_search_text = 'Wrote dependency tree to: '
     search_len = len(maven_search_text)
+    root_dependency = ''
+    dependency = '+-'
+    sibling_node_dependency = '\-'
+    dependency_field_separator = ':'
 
     def parse_dependency_entries(self):
         entries = self.get_dependency_tree_entries()
@@ -20,6 +24,7 @@ class MavenTreeParser():
     def handle_maven_dependencies(self, file):
         for lines in file.readlines():
             print lines
+
 
     def get_dependency_tree_entries(self):
         current_dir = os.getcwd()
