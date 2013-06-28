@@ -15,6 +15,7 @@ class MavenTreeParser():
     dependency = '+-'
     sibling_node_dependency = '\-'
     dependency_field_separator = ':'
+    depth = '|'
 
     def parse_dependency_entries(self):
         entries = self.get_dependency_tree_entries()
