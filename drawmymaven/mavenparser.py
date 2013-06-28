@@ -8,9 +8,18 @@ from xml.etree import cElementTree
 
 class MavenTreeParser():
     base_path = '/Users/a121865/sw/git/omaelisa/omaelisa/'
-    maven_command = 'mvn org.apache.maven.plugins:maven-dependency-plugin:2.6:tree -DoutputFile=tree.txt'
+    maven_command = 'mvn -o org.apache.maven.plugins:maven-dependency-plugin:2.6:tree -DoutputFile=tree.txt'
     maven_search_text = 'Wrote dependency tree to: '
     search_len = len(maven_search_text)
+
+    def parse_dependency_entries(self):
+        entries = self.get_dependency_tree_entries()
+        for entry in entries:
+            self.handle_maven_dependencies(open(entry, 'r'));
+
+    def handle_maven_dependencies(self, file):
+        for lines in file.readlines():
+            print lines
 
     def get_dependency_tree_entries(self):
         current_dir = os.getcwd()
