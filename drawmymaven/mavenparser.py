@@ -20,11 +20,19 @@ class MavenTreeParser():
     def parse_dependency_entries(self):
         entries = self.get_dependency_tree_entries()
         for entry in entries:
-            self.handle_maven_dependencies(open(entry, 'r'));
+            self.handle_maven_dependencies(entry);
 
-    def handle_maven_dependencies(self, file):
-        for lines in file.readlines():
-            print lines
+    def handle_maven_dependencies(self, path):
+        file = open(path, 'r')
+        for line in file.readlines():
+            if(self.dependency in line):
+                print("dependency")
+
+            if(self.sibling_node_dependency in line):
+                print("Sibling node")
+
+            if(self.depth in line):
+                print("depth")
 
 
     def get_dependency_tree_entries(self):
