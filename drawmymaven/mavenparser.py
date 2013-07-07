@@ -16,6 +16,7 @@ class MavenTreeParser():
     sibling_node_dependency = '\-'
     dependency_field_separator = ':'
     depth = '|'
+    markers = [dependency, sibling_node_dependency, depth]
 
     def parse_dependency_entries(self):
         entries = self.get_dependency_tree_entries()
@@ -25,13 +26,14 @@ class MavenTreeParser():
     def handle_maven_dependencies(self, path):
         file = open(path, 'r')
         for line in file.readlines():
-            if(self.dependency in line):
+            """parser_markets = [marker for marker in self.markers if marker in line]"""
+            if self.dependency in line:
                 print("dependency")
 
-            if(self.sibling_node_dependency in line):
+            if self.sibling_node_dependency in line:
                 print("Sibling node")
 
-            if(self.depth in line):
+            if self.depth in line:
                 print("depth")
 
 
